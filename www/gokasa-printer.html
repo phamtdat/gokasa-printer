@@ -2,73 +2,97 @@
 <html>
 
 <head>
-    <title>GOKASA Printer</title>
+    <title>GOKASA Android Printer</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <style>
+        h1 {
+            font-size: 18px;
+        }
         .container {
             width: 100%;
+        }
+        .input-clear {            
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            height: 14px;
+            margin: auto;
+            font-size: 14px;
+            cursor: pointer;
+            color: #999;
+        }
+        .mono {
+            font-family: monospace;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Gokasa Printer</h1>
+        <h1>GOKASA Android Printer</h1>
         <p>Tip: Use hex notation to input binary data. For example:
-            <strong>\x00</strong> for 0,
-            <strong>\xff</strong> for 255, etc. </p>
+            <strong class="mono">\x00</strong> for 0,
+            <strong class="mono">\xff</strong> for 255, etc. </p>
         <form id="form">
             <div class="row">
                 <div class="form-group col-xs-6">
                     <label for="pwd">Scheme:</label>
-                    <input class="form-control" id="scheme" required>
+                    <div class="btn-group">
+                        <input class="form-control" id="scheme" required>
+                        <span id="scheme-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
+                    </div>
                 </div>
                 <div class="form-group col-xs-6">
                     <label for="pwd">Package:</label>
-                    <input class="form-control" id="package" required>
+                    <div class="btn-group">
+                        <input class="form-control" id="package" required>
+                        <span id="package-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="pwd">Data:</label>
-                <textarea class="form-control" rows="15" id="textarea" required>
+                <textarea class="form-control mono" rows="10" id="textarea" required>
 \x07 E X A M P L E
 lol+ěščřžýáíé=´=é,.-ů¨)ú§¨-.,:_:_"//('*-/+
 +ĚŠČŘŽÝÁÍÉ=
 čěščěš
 =+_)(*&amp;^%$#@)" ' ' "
 12098758
-lorem up
+                          lorem up
 &gt;&lt;?:"|{}ˇ%1°°;`~;
-\x32\x64\x68\x65\x6c\x6c\x6f\x20\x77\x6f\x72\x6c\x64
-the above line means something like hello world!
+\x6c\x6c\x6f\x20\x77\x6f\x72\x6c\x64
+the above line means 
+something like hello world!
 ||||||||||||||||||||||||||||||||
 remember to cut the receipt
-            </textarea>
+                </textarea>
             </div>
+            <button id="print" type="submit" class="btn btn-primary">Submit</button>
+            <button id="preview" type="button" class="btn btn-warning">Preview</button>
+            <button id="clear" type="button" class="btn btn-danger">Clear data</button>
+            <hr>
             <div class="form-group">
                 <label for="pwd">Intent preview:</label>
                 <textarea id="intent-preview" class="form-control" rows="5"></textarea>
             </div>
-            <hr>
             <div class="form-group">
                 <label for="pwd">Anchor preview:</label>
-                <div style="overflow: scroll; word-break: break-all; max-height: 100px">
-                    <a id="anchor-preview" href="intent://gokasa-print/#Intent;" target="_blank">&lt;Intent link&gt;</a>
+                <div style="overflow: scroll; word-break: break-all; max-height: 90px">
+                    <a id="anchor-preview" href="#" target="_blank">&lt;Intent link&gt;</a>
                 </div>
             </div>
-            <button id="print" type="submit" class="btn btn-primary btn-lg">Print</button>
-            <button id="preview" type="button" class="btn btn-warning btn-lg">Preview</button>
-            <button id="clear" type="button" class="btn btn-danger btn-lg">Clear</button>
-            <hr>
             <div class="form-group">
-                <label for="pwd">URL encoded preview:</label>
+                <label for="pwd">URL encoded data preview:</label>
                 <textarea id="url-preview" class="form-control" rows="5"></textarea>
-                <hr>
-                <label for="pwd">Binary preview:</label>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Binary data preview:</label>
                 <textarea id="text-preview" class="form-control" rows="5"></textarea>
             </div>
         </form>
@@ -92,7 +116,7 @@ remember to cut the receipt
                 localStorage.setItem('scheme', sch);
                 localStorage.setItem('package', pac);
                 const fallbackURL = encodeURIComponent('https://dev.gokasa.cz/install-gokasa-printer.html');
-                const intentURL = 'intent://gokasa-print#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded;
+                const intentURL = 'intent://gokasa-print#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
                 intentPreview.val(intentURL);
                 anchorPreview.attr('href', intentURL).html(intentURL);
                 return intentURL;
@@ -122,7 +146,10 @@ remember to cut the receipt
             $('#clear').click(() => {
                 textarea.val('').change();
             });
-            $('#preview').click(previewIntent);
+            $('#scheme-clear, #package-clear').click(function () {
+                $(this).siblings().val('');
+            });
+            $('#preview').click(previewIntent).hide();
             textarea.change();
         });
     </script>
