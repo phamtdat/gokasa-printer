@@ -3,17 +3,41 @@
 
 <head>
     <title>Install GOKASA Printer</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <style>
+        html, body, .container {
+            height: 100%;
+        }
+        body {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        div.logo {
+            display: flex;
+            align-items: center;
+            width: 160px;
+            height: 160px;
+            background-size: 160px;
+            transition: transform .5s ease;
+            background-image: url(https://partners.gokasa.cz/img/quadstar.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Install Gokasa Printer</h1>
-        <p><a href='https://play.google.com/store/apps/details?id=cz.ethereal.gokasamanager&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a></p>
+        <h1>Looks like Gokasa Printer is not installed</h1>
+        <div><a href='https://play.google.com/store/apps/details?id=cz.ethereal.gokasamanager&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a></div>
+        <div class="logo"></div>
+        <h2>Brought to you by Ethereals United</h2>
 </body>
 
 </html>

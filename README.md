@@ -1,4 +1,6 @@
-# Gokasa Printer requirements
+# GOKASA Android Printer
+
+## Requirements
 
 ### Description:
 - A mobile app for Android that captures intent calls from a web browser. These intents contain URL encoded data. The mobile app will convert this data back and send it to the printer via bluetooth/USB and the printer will print it seamlessly.
@@ -16,7 +18,7 @@
     
 ### Example of web call in JS: 
 `
-<a href="intent://gokasa-print#Intent;scheme=scheme;package=packase;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world" target="_blank"/>;
+<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank"/>;
 `
     
 ### Test web interface: 
