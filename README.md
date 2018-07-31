@@ -16,9 +16,24 @@
 ### Target devices:  
 - Tablets and phones with Android 5 and later  
   
-### Example of web call in JS:  
+### Example of web call in HTML & JS:  
 ```html
-<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank">Intent</a>;
+<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank">Intent</a>
+```
+  
+```js
+const scheme = "scheme";
+const package = "package";
+const data = encodeURIComponent("hello world!");
+const fallbackURL = encodeURIComponent("https://dev.gokasa.cz/install-gokasa-printer.html");
+window.open(
+    "intent://gokasa-print#Intent;" +
+    "scheme=" + scheme + ";" +
+    "package=" + package + ";" +
+    "S.browser_fallback_url=" + fallbackURL + ";" +
+    "S.data=" + data + ";" +
+    "end;"
+);
 ```
   
 ### Test web interface:  
