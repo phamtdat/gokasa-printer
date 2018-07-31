@@ -18,7 +18,7 @@
   
 ### Example of web call in JS:  
 ```html
-<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank"/>;
+<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank">Intent</a>;
 ```
   
 ### Test web interface:  
