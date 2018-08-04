@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dummy_devices">
+        <item>HTC One</item>
+        <item>ABC Printer</item>
+        <item>Mama's notebook</item>
+        <item>Ben's phone</item>
+        <item>Samsung Galaxy</item>
+        <item>HTC One 3</item>
+        <item>ABC Printer 3</item>
+        <item>Mama's notebook 3</item>
+        <item>Ben's phone 4</item>
+        <item>Samsung Galaxy 2</item>
+        <item>HTC One 11</item>
+        <item>ABC Printer e</item>
+        <item>Mama's notebook tt</item>
+        <item>Ben's phone 43</item>
+        <item>Samsung Galaxy 34</item>
+    </string-array>
+</resources>
