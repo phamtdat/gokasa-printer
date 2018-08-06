@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Gokasa Printer</string>
     <string name="select_printer">Zvolte tiskárnu ze seznamu dostupných zařízení.</string>
+    <string name="no_bt_tech">Vaše zařízení nepodporuje Bluetooth.</string>
+    <string name="turn_on_bt">Zapněte prosím Bluetooth.</string>
 </resources>

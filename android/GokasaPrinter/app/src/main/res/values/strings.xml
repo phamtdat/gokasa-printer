@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Gokasa Printer</string>
     <string name="select_printer">Select your printer from nearby devices.</string>
+    <string name="no_bt_tech">Your device does not support Bluetooth.</string>
+    <string name="turn_on_bt">Please, turn on your Bluetooth first.</string>
 </resources>

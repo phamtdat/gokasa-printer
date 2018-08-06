@@ -40,13 +40,19 @@ class BluetoothDeviceListAdapter : RecyclerView.Adapter<BluetoothDeviceListAdapt
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private var tvDeviceName: TextView? = null
+        private var tvDeviceAddress: TextView? = null
+        private var tvDeviceClass: TextView? = null
 
         init {
             tvDeviceName = view.findViewById(R.id.tv_device_name)
+            tvDeviceAddress = view.findViewById(R.id.tv_device_address)
+            tvDeviceClass = view.findViewById(R.id.tv_device_class)
         }
 
         internal fun bind(btDevice: BluetoothDevice) {
             tvDeviceName?.text = btDevice.name
+            tvDeviceAddress?.text = btDevice.address
+            tvDeviceClass?.text = BtDeviceUtil.getStringDeviceClass(btDevice.bluetoothClass.deviceClass)
         }
     }
 
