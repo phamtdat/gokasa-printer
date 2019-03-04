@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
     private fun catchIntent() {
         if (intent.data != null) {
             val intentUri: Uri? = intent?.data
-            Log.e(TAG, "Intent called")
             val savedPrinterName = getPreference("printerName")
             val data: String = intentUri?.getQueryParameter("data").toString()
             sendToPrinter(savedPrinterName, data)

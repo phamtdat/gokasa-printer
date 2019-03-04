@@ -2,201 +2,51 @@
 <html>
 
 <head>
-    <title>GOKASA Android Printer</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install GOKASA Printer</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <style>
-        h1 {
-            font-size: 18px;
+        html, body, .container {
+            height: 100%;
         }
-
+        body {
+            text-align: center;
+        }
         .container {
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-
-        .input-clear {
-            position: absolute;
-            right: 10px;
-            top: 0;
-            bottom: 0;
-            height: 14px;
-            margin: auto;
-            font-size: 14px;
-            cursor: pointer;
-            color: #999;
+        .logo {
+            display: flex;
+            align-items: center;
+            width: 160px;
+            height: 160px;
+            background-size: 160px;
+            transition: transform .5s ease;
+            background-image: url(https://partners.gokasa.cz/img/quadstar.svg);
+            background-position: center;
+            background-repeat: no-repeat;
         }
-
-        .mono {
-            font-family: monospace;
-        }
-
-        .btn-group {
-            width: 100%;
-        }
-
-        .tab-content textarea {
-            border-top: none;
-            box-shadow: none;
-            border-radius: 0 0 4px 4px;
-            word-break: break-all;
-        }
-
-        .anchor-container {
-            overflow: auto;
-            word-break: break-all;
-            height: 210px;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
+        .logo:hover {
+            transform: rotate(270deg);
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>GOKASA Android Printer</h1>
-        <p>Tip: Use hex notation to input binary data. For example:
-            <strong class="mono">\x00</strong> for 0,
-            <strong class="mono">\xff</strong> for 255, etc. </p>
-        <form id="form">
-            <div class="row">
-                <div class="form-group col-xs-6">
-                    <label for="pwd">Scheme:</label>
-                    <div class="btn-group">
-                        <input class="form-control" id="scheme" required>
-                        <span id="scheme-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
-                    </div>
-                </div>
-                <div class="form-group col-xs-6">
-                    <label for="pwd">Package:</label>
-                    <div class="btn-group">
-                        <input class="form-control" id="package" required>
-                        <span id="package-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="pwd">Data:</label>
-                <textarea class="form-control mono" rows="10" id="textarea" required>
-\x07 E X A M P L E
-lol+ěščřžýáíé=´=é,.-ů¨)ú§¨-.,:_:_"//('*-/+
-+ĚŠČŘŽÝÁÍÉ=
-čěščěš
-=+_)(*&amp;^%$#@)" ' ' "
-12098758
-                          lorem up
-&gt;&lt;?:"|{}ˇ%1°°;`~;
-\x6c\x6c\x6f\x20\x77\x6f\x72\x6c\x64
-the above line means 
-something like hello world!
-||||||||||||||||||||||||||||||||
-remember to cut the receipt
-                </textarea>
-            </div>
-            <button id="print" type="submit" class="btn btn-primary">Submit</button>
-            <!--button id="preview" type="button" class="btn btn-warning">Preview</button-->
-            <button id="clear" type="button" class="btn btn-danger">Clear data</button>
-        </form>
-        <hr>
-        <ul class="nav nav-tabs">
-            <li class="active">
-                <a data-toggle="tab" href="#menu0">Link</a>
-            </li>
-            <li>
-                <a data-toggle="tab" href="#menu1">Intent</a>
-            </li>
-            <li>
-                <a data-toggle="tab" href="#menu2">URL encoded</a>
-            </li>
-            <li>
-                <a data-toggle="tab" href="#menu3">Binary</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div id="menu0" class="tab-pane fade in active">
-                <div class="form-group">
-                    <div class="anchor-container">
-                        <a id="anchor-preview" href="#" target="_blank">&lt;Intent link&gt;</a>
-                    </div>
-                </div>
-            </div>
-            <div id="menu1" class="tab-pane fade">
-                <div class="form-group">
-                    <textarea id="intent-preview" class="form-control" rows="10"></textarea>
-                </div>
-            </div>
-            <div id="menu2" class="tab-pane fade">
-                <div class="form-group">
-                    <textarea id="url-preview" class="form-control" rows="10"></textarea>
-                </div>
-            </div>
-
-            <div id="menu3" class="tab-pane fade">
-                <div class="form-group">
-                    <textarea id="text-preview" class="form-control" rows="10"></textarea>
-                </div>
-            </div>
+        <h1>Looks like Gokasa Printer is not installed</h1>
+        <div>
+            <a href='https://play.google.com/store/apps/details?id=cz.ethereal.gokasamanager&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+            </a>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(() => {
-            const previewIntent = () => {
-                const data = textarea.val().replace(/\\x[0-9A-F]{2}/gi, (m) => {
-                    return String.fromCharCode(parseInt(m.slice(2), 16));
-                });
-
-                textPreview.val(data);
-                const encoded = encodeURIComponent(data);
-                urlPreview.val(encoded);
-                const sch = scheme.val();
-                const pac = package.val();
-                localStorage.setItem('scheme', sch);
-                localStorage.setItem('package', pac);
-                const fallbackURL = encodeURIComponent('https://dev.gokasa.cz/install-gokasa-printer.html');
-                const intentURL = 'intent://gokasa-print#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
-                intentPreview.val(intentURL);
-                anchorPreview.attr('href', intentURL).html(intentURL);
-                return intentURL;
-            };
-            const stored_scheme = localStorage.getItem('scheme') || '';
-            const stored_package = localStorage.getItem('package') || '';
-
-            const textarea = $('#textarea').on('change paste keyup', previewIntent);
-            const scheme = $('#scheme').val(stored_scheme).on('change paste keyup', previewIntent);
-            const package = $('#package').val(stored_package).on('change paste keyup', previewIntent);
-
-            const textPreview = $('#text-preview');//.click(function () { $(this).select(); });
-            const urlPreview = $('#url-preview');//.click(function () { $(this).select(); });
-            const intentPreview = $('#intent-preview');//.click(function () { $(this).select(); });
-            const anchorPreview = $('#anchor-preview');//.click(function () { $(this).select(); });
-
-
-            $('#form').submit((e) => {
-                e.preventDefault();
-                const intentURL = previewIntent();
-                const intentWindow = window.open(intentURL);
-                /*setTimeout(() => {
-                    intentWindow.close();
-                }, 2000);*/
-            });
-
-            $('#clear').click(() => {
-                textarea.val('').change();
-            });
-            $('#scheme-clear, #package-clear').click(function () {
-                $(this).siblings().val('');
-            });
-            //$('#preview').click(previewIntent).hide();
-            textarea.change();
-        });
-    </script>
+        <br>
+        <br>
+        <div class="logo"></div>
+        <h2>Brought to you by Ethereals United</h2>
 </body>
 
 </html>

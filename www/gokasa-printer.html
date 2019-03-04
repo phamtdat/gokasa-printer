@@ -2,85 +2,90 @@
 <html>
 
 <head>
-  <title>GOKASA Android Printer</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-  <style>
-    h1 {
-      font-size: 18px;
-    }
+    <title>GOKASA Android Printer</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <style>
+        h1 {
+            font-size: 18px;
+        }
 
-    .container {
-      width: 100%;
-    }
+        .container {}
 
-    .input-clear {
-      position: absolute;
-      right: 10px;
-      top: 0;
-      bottom: 0;
-      height: 14px;
-      margin: auto;
-      font-size: 14px;
-      cursor: pointer;
-      color: #999;
-    }
+        .input-clear {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+            height: 14px;
+            margin: auto;
+            font-size: 14px;
+            cursor: pointer;
+            color: #999;
+        }
 
-    .mono {
-      font-family: monospace;
-    }
+        .mono {
+            font-family: monospace;
+        }
 
-    .btn-group {
-      width: 100%;
-    }
+        .btn-group {
+            width: 100%;
+        }
 
-    .tab-content textarea {
-      border-top: none;
-      box-shadow: none;
-      border-radius: 0 0 4px 4px;
-      word-break: break-all;
-    }
+        .tab-content textarea {
+            border-top: none;
+            box-shadow: none;
+            border-radius: 0 0 4px 4px;
+            word-break: break-all;
+        }
 
-    .anchor-container {
-      overflow: auto;
-      word-break: break-all;
-      max-height: 210px;
-      padding: 6px 12px;
-      border: 1px solid #ccc;
-      border-top: none;
-    }
-  </style>
+        .anchor-container {
+            overflow: auto;
+            word-break: break-all;
+            height: 210px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>GOKASA Android Printer</h1>
-    <p>Tip: Use hex notation to input binary data. For example:
-      <strong class="mono">\x00</strong> for 0,
-      <strong class="mono">\xff</strong> for 255, etc. </p>
-    <form id="form">
-      <div class="row">
-        <div class="form-group col-xs-6">
-          <label for="pwd">Scheme:</label>
-          <div class="btn-group">
-            <input class="form-control" id="scheme" required>
-            <span id="scheme-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
-          </div>
-        </div>
-        <div class="form-group col-xs-6">
-          <label for="pwd">Package:</label>
-          <div class="btn-group">
-            <input class="form-control" id="package" required>
-            <span id="package-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Data:</label>
-        <textarea class="form-control mono" rows="10" id="textarea" required>
+    <div class="container">
+        <h1>GOKASA Android Printer</h1>
+        <p>Tip: Use hex notation to input binary data. For example:
+            <strong class="mono">\x00</strong> for 0,
+            <strong class="mono">\xff</strong> for 255, etc. </p>
+        <form id="form">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label for="pwd">Scheme:</label>
+                    <div class="btn-group">
+                        <input class="form-control" id="scheme" value="ethereal" required>
+                        <span id="scheme-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="pwd">Host:</label>
+                    <div class="btn-group">
+                        <input class="form-control" id="host" value="gokasa-print" required>
+                        <span id="package-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="pwd">Package:</label>
+                    <div class="btn-group">
+                        <input class="form-control" id="package" value="cz.ethereal.gokasaprinter" required>
+                        <span id="package-clear" class="input-clear glyphicon glyphicon-remove-circle"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Data:</label>
+                <textarea class="form-control mono" rows="10" id="textarea" required>
 \x07 E X A M P L E
 lol+ěščřžýáíé=´=é,.-ů¨)ú§¨-.,:_:_"//('*-/+
 +ĚŠČŘŽÝÁÍÉ=
@@ -95,108 +100,113 @@ something like hello world!
 ||||||||||||||||||||||||||||||||
 remember to cut the receipt
                 </textarea>
-      </div>
-      <button id="print" type="submit" class="btn btn-primary">Submit</button>
-      <button id="preview" type="button" class="btn btn-warning">Preview</button>
-      <button id="clear" type="button" class="btn btn-danger">Clear data</button>
-    </form>
-    <hr>
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a data-toggle="tab" href="#menu0">Link</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#menu1">Intent</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#menu2">URL encoded</a>
-      </li>
-      <li>
-        <a data-toggle="tab" href="#menu3">Binary</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div id="menu0" class="tab-pane fade in active">
-        <div class="form-group">
-          <div class="anchor-container">
-            <a id="anchor-preview" href="#" target="_blank">&lt;Intent link&gt;</a>
-          </div>
-        </div>
-      </div>
-      <div id="menu1" class="tab-pane fade">
-        <div class="form-group">
-          <textarea id="intent-preview" class="form-control" rows="10"></textarea>
-        </div>
-      </div>
-      <div id="menu2" class="tab-pane fade">
-        <div class="form-group">
-          <textarea id="url-preview" class="form-control" rows="10"></textarea>
-        </div>
-      </div>
+            </div>
+            <button id="print" type="submit" class="btn btn-primary">Submit</button>
+            <!--button id="preview" type="button" class="btn btn-warning">Preview</button-->
+            <button id="clear" type="button" class="btn btn-danger">Clear data</button>
+        </form>
+        <hr>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#menu0">Link</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#menu1">Intent</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#menu2">URL encoded</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#menu3">Binary</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="menu0" class="tab-pane fade in active">
+                <div class="form-group">
+                    <div class="anchor-container">
+                        <a id="anchor-preview" href="#" target="_blank">&lt;Intent link&gt;</a>
+                    </div>
+                </div>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <div class="form-group">
+                    <textarea id="intent-preview" class="form-control" rows="10"></textarea>
+                </div>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <div class="form-group">
+                    <textarea id="url-preview" class="form-control" rows="10"></textarea>
+                </div>
+            </div>
 
-      <div id="menu3" class="tab-pane fade">
-        <div class="form-group">
-          <textarea id="text-preview" class="form-control" rows="10"></textarea>
+            <div id="menu3" class="tab-pane fade">
+                <div class="form-group">
+                    <textarea id="text-preview" class="form-control" rows="10"></textarea>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(() => {
-      const previewIntent = () => {
-        const data = textarea.val().replace(/\\x[0-9A-F]{2}/gi, (m) => {
-          return String.fromCharCode(parseInt(m.slice(2), 16));
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            const previewIntent = () => {
+                const data = textarea.val().replace(/\\x[0-9A-F]{2}/gi, (m) => {
+                    return String.fromCharCode(parseInt(m.slice(2), 16));
+                });
+
+                textPreview.val(data);
+                const encoded = encodeURIComponent(data);
+                urlPreview.val(encoded);
+                const sch = scheme.val();
+                const pac = package.val();
+                const hos = host.val();
+                localStorage.setItem('scheme', sch);
+                localStorage.setItem('package', pac);
+                localStorage.setItem('host', hos);
+                const fallbackURL = encodeURIComponent('https://dev.gokasa.cz/install-gokasa-printer.html');
+                //const intentURL = sch + '://' + hos + '?data=' + encoded;//'#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
+                const intentURL = sch + '://' + hos + '#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
+                intentPreview.val(intentURL);
+                anchorPreview.attr('href', intentURL).html(intentURL);
+                return intentURL;
+            };
+            const stored_scheme = localStorage.getItem('scheme') || '';
+            const stored_package = localStorage.getItem('package') || '';
+            const stored_host = localStorage.getItem('host') || '';
+
+            const textarea = $('#textarea').on('change paste keyup', previewIntent);
+            const scheme = $('#scheme').val(stored_scheme || 'ethereal').on('change paste keyup', previewIntent);
+            const host = $('#host').val(stored_host || 'gokasa-print').on('change paste keyup', previewIntent);
+            const package = $('#package').val(stored_package || 'cz.ethereal.gokasaprinter').on('change paste keyup', previewIntent);
+
+            const textPreview = $('#text-preview');//.click(function () { $(this).select(); });
+            const urlPreview = $('#url-preview');//.click(function () { $(this).select(); });
+            const intentPreview = $('#intent-preview');//.click(function () { $(this).select(); });
+            const anchorPreview = $('#anchor-preview');//.click(function () { $(this).select(); });
+
+
+            $('#form').submit((e) => {
+                e.preventDefault();
+                const intentURL = previewIntent();
+                const intentWindow = window.open(intentURL);
+                /*setTimeout(() => {
+                    intentWindow.close();
+                }, 2000);*/
+            });
+
+            $('#clear').click(() => {
+                textarea.val('').change();
+            });
+            $('#scheme-clear, #package-clear').click(function () {
+                $(this).siblings().val('');
+            });
+            //$('#preview').click(previewIntent).hide();
+            textarea.change();
         });
-
-        textPreview.val(data);
-        const encoded = encodeURIComponent(data);
-        urlPreview.val(encoded);
-        const sch = scheme.val();
-        const pac = package.val();
-        localStorage.setItem('scheme', sch);
-        localStorage.setItem('package', pac);
-        const fallbackURL = encodeURIComponent('https://dev.gokasa.cz/install-gokasa-printer.html');
-        const intentURL = 'intent://gokasa-print#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
-        intentPreview.val(intentURL);
-        anchorPreview.attr('href', intentURL).html(intentURL);
-        return intentURL;
-      };
-      const stored_scheme = localStorage.getItem('scheme') || '';
-      const stored_package = localStorage.getItem('package') || '';
-
-      const textarea = $('#textarea').on('change paste keyup', previewIntent);
-      const scheme = $('#scheme').val(stored_scheme).on('change paste keyup', previewIntent);
-      const package = $('#package').val(stored_package).on('change paste keyup', previewIntent);
-
-      const textPreview = $('#text-preview');//.click(function () { $(this).select(); });
-      const urlPreview = $('#url-preview');//.click(function () { $(this).select(); });
-      const intentPreview = $('#intent-preview');//.click(function () { $(this).select(); });
-      const anchorPreview = $('#anchor-preview');//.click(function () { $(this).select(); });
-
-
-      $('#form').submit((e) => {
-        e.preventDefault();
-        const intentURL = previewIntent();
-        const intentWindow = window.open(intentURL);
-        /*setTimeout(() => {
-            intentWindow.close();
-        }, 2000);*/
-      });
-
-      $('#clear').click(() => {
-        textarea.val('').change();
-      });
-      $('#scheme-clear, #package-clear').click(function () {
-        $(this).siblings().val('');
-      });
-      $('#preview').click(previewIntent).hide();
-      textarea.change();
-    });
-  </script>
+    </script>
 </body>
 
 </html>
