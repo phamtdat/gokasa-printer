@@ -2,10 +2,8 @@ package cz.ethereal.gokasaprinter
 
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.concurrent.schedule
 import android.bluetooth.*
@@ -14,12 +12,10 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import java.io.IOException
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,26 +25,10 @@ class MainActivity : AppCompatActivity() {
     private var mBluetoothSocket: BluetoothSocket? = null
     private val applicationUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         bindEvents()
 
