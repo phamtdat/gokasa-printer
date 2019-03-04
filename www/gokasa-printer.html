@@ -167,8 +167,8 @@ remember to cut the receipt
                 localStorage.setItem('package', pac);
                 localStorage.setItem('host', hos);
                 const fallbackURL = encodeURIComponent('https://dev.gokasa.cz/install-gokasa-printer.html');
-                //const intentURL = sch + '://' + hos + '?data=' + encoded;//'#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
-                const intentURL = sch + '://' + hos + '#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
+                const intentURL = sch + '://' + hos + '?data=' + encoded;
+                //const intentURL = sch + '://' + hos + '#Intent;scheme=' + sch + ';package=' + pac + ';S.browser_fallback_url=' + fallbackURL + ';S.data=' + encoded + ';end;';
                 intentPreview.val(intentURL);
                 anchorPreview.attr('href', intentURL).html(intentURL);
                 return intentURL;
