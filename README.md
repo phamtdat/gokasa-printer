@@ -18,13 +18,28 @@
   
 ### Example of web call in HTML & JS:  
 ```html
-<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank">Intent</a>
+<!-- simple intent -->
+<a href="ethereal://gokasa-print?data=hello%20world" target="_blank">Print intent</a>
 ```
   
 ```js
+const data = encodeURIComponent("hello world!");
+window.open(`ethereal://gokasa-print?data=${data}`);
+```
+  
+### Test web interface:  
+[https://dev.gokasa.cz](https://dev.gokasa.cz)  
+
+### Deprecated
+```html
+<!-- legacy intent -->
+<a href="intent://gokasa-print#Intent;scheme=scheme;package=package;S.browser_fallback_url=https%3A%2F%2Fdev.gokasa.cz%2Finstall-gokasa-printer.html;S.data=hello%20world;end;" target="_blank">Print intent</a>
+```
+
+```js
+const data = encodeURIComponent("hello world!");
 const scheme = "scheme";
 const package = "package";
-const data = encodeURIComponent("hello world!");
 const fallbackURL = encodeURIComponent("https://dev.gokasa.cz/install-gokasa-printer.html");
 window.open(
     "intent://gokasa-print#Intent;" +
@@ -35,7 +50,4 @@ window.open(
     "end;"
 );
 ```
-  
-### Test web interface:  
-[https://dev.gokasa.cz](https://dev.gokasa.cz)  
   
