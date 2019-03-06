@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gokasa Printer</string>
+    <string name="test_print">In thử</string>
+    <string name="bt_not_available">Thiết bị không có Bluetooth</string>
+    <string name="bt_activate">Xin hãy kích hoạt Bluetooth</string>
+    <string name="bt_device_not_found">Không tìm thấy máy in Bluetooth</string>
+    <string name="printer_name">Tên máy in</string>
+    <string name="bt_no_paired_devices">Chưa có thiết bị nào được kết nối</string>
+    <string name="printer_select">Chọn máy in</string>
+    <string name="bt_scan">Tìm máy in</string>
+    <string name="bt_selected">Thiết bị đã chọn:</string>
+    <string name="bt_bad_device">Không thể liên kết với thiết bị đã chọn</string>
+</resources>

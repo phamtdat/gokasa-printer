@@ -12,49 +12,50 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.support.constraint.ConstraintLayout
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.widget.*
 import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
+
+    private val defaultPrinterName = ""
 
     private var mBluetoothDevice: BluetoothDevice? = null
     private var mBluetoothAdapter: BluetoothAdapter? = null
     private var mBluetoothSocket: BluetoothSocket? = null
 
     private lateinit var sharedPreference: SharedPreferences
-    private lateinit var printerNameInput: EditText
-    private lateinit var savePrinterNameButton: Button
     private lateinit var testPrintButton: Button
+    private lateinit var printerSpinner: Spinner
+    private lateinit var scanButton: Button
 
     private val applicationUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.setIcon(R.mipmap.ic_launcher)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         setup()
         listBluetoothDevices()
         catchIntent()
     }
-
     private fun setup() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-
         sharedPreference = getSharedPreferences("GOKASA_PRINTER", Context.MODE_PRIVATE)
-        printerNameInput = findViewById(R.id.printerNameInput)
-        printerNameInput.setText(getPreference("printerName"))
-        savePrinterNameButton = findViewById(R.id.savePrinterNameButton)
         testPrintButton = findViewById(R.id.testPrintButton)
+        printerSpinner = findViewById(R.id.printerSpinner)
+        scanButton = findViewById(R.id.scanButton)
 
-        savePrinterNameButton.setOnClickListener {
-            val printerName = printerNameInput.text.toString()
-            setPreference("printerName", printerName)
-        }
         testPrintButton.setOnClickListener {
-            val printerName = printerNameInput.text.toString()
-            sendToPrinter(printerName, "This is a sample message\nThis is another line\n\nAnd another line\n\n")
+            val printerName = getPreference("printerName")
+            sendToPrinter(printerName, "This is a sample message\nThis is another line\n\nAnd another line\n\n\n\n")
+        }
+        scanButton.setOnClickListener {
+            listBluetoothDevices()
         }
     }
 
@@ -62,29 +63,26 @@ class MainActivity : AppCompatActivity() {
         if (intent.data != null) {
             val intentUri: Uri? = intent?.data
             val savedPrinterName = getPreference("printerName")
-            val data: String = intentUri?.getQueryParameter("data").toString()
-            sendToPrinter(savedPrinterName, data)
+            val printData: String = intentUri?.getQueryParameter("data").toString()
+            //Log.e(TAG, printData)
+            sendToPrinter(savedPrinterName, printData)
             exitApp(1000)
         }
     }
 
     private fun setPreference(key: String, value: String) {
-        var editor = sharedPreference.edit()
+        val editor = sharedPreference.edit()
         editor?.putString(key, value)
-        editor?.commit()
+        editor?.apply()
     }
 
-    private fun getPreference(key: String?): String {
-        return sharedPreference.getString(key, "PTP-II").toString()
+    private fun getPreference(key: String): String {
+        return sharedPreference.getString(key, defaultPrinterName)!!
     }
 
     private fun exitApp(delay: Long) {
         Timer("Closing", false).schedule(delay) {
-            try {
-                if (mBluetoothSocket != null) mBluetoothSocket!!.close()
-            } catch (e: Exception) {
-                Log.e(TAG, "Problem with Bluetooth socket ", e)
-            }
+            mBluetoothSocket!!.close()
             finish()
         }
     }
@@ -93,20 +91,20 @@ class MainActivity : AppCompatActivity() {
         if (!setBluetoothDevice(printerName)) {
             return
         }
-        if (!setBluetoothSocket()) {
-            return
-        }
         val os = mBluetoothSocket!!.outputStream
         os.write(data.toByteArray())
+        os.flush()
+        mBluetoothSocket!!.close()
+        //Log.e(TAG, "Wrote to Bluetooth socket output stream")
     }
 
     private fun checkBluetoothState(): Boolean {
         if (mBluetoothAdapter == null) {
-            toast("No bluetooth adapter available!")
+            toast(getString(R.string.bt_not_available))
             return false
         }
         if (!mBluetoothAdapter!!.isEnabled) {
-            toast("Please activate bluetooth!")
+            toast(getString(R.string.bt_activate))
             val enableBluetooth = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(enableBluetooth, 0)
             return false
@@ -118,18 +116,36 @@ class MainActivity : AppCompatActivity() {
         if (!checkBluetoothState()) {
             return
         }
-        //val pairedDevices = mBluetoothAdapter!!.bondedDevices
-        /*for (device in pairedDevices) {
-            val constraintLayout = findViewById<ConstraintLayout>(R.id.constraintLayout)
-            val button = Button(this)
-            button.layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
-            button.text = "device.name"
-            button.setOnClickListener{
-                toast("You have selected device.name $i" )
+        val pairedDevices = mBluetoothAdapter!!.bondedDevices
+        val printerNames = arrayListOf<String>()
+        var defaultSelectionIndex = 0
+        for ((index, device) in pairedDevices.withIndex()) {
+            //Log.e(TAG, "Found paired device ***$index ${device!!.name}***")
+            //Log.e(TAG, "Saved device name is ***${getPreference("printerName")}***")
+            printerNames.add(device!!.name)
+            if (device!!.name == getPreference("printerName")) {
+                defaultSelectionIndex = index
             }
-            constraintLayout.addView(button)
+        }
 
-        }*/
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, printerNames)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        printerSpinner.adapter = arrayAdapter
+        printerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val printerName = printerNames[position]
+                setPreference("printerName", printerName)
+                toast("${getString(R.string.bt_selected)} ${printerNames[position]}")
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Code to perform some action when nothing is selected
+            }
+        }
+        if (printerNames.size > 0) {
+            printerSpinner.setSelection(defaultSelectionIndex)
+        }
+
     }
 
     private fun setBluetoothDevice(bluetoothDeviceName: String): Boolean {
@@ -140,35 +156,27 @@ class MainActivity : AppCompatActivity() {
         for (device in pairedDevices) {
             if (device!!.name == bluetoothDeviceName) {
                 mBluetoothDevice = device
-                toast("Bluetooth Device " + bluetoothDeviceName + " Setup OK")
-                return true
+                //Log.e(TAG,"Bluetooth Device $bluetoothDeviceName Setup OK")
+                return setBluetoothSocket()
             }
         }
+        toast("${getString(R.string.bt_device_not_found)} $bluetoothDeviceName")
         return false
     }
 
     private fun setBluetoothSocket(): Boolean {
         try {
             mBluetoothSocket = mBluetoothDevice?.createRfcommSocketToServiceRecord(applicationUUID)
-            mBluetoothAdapter!!.cancelDiscovery()
+            //mBluetoothAdapter!!.cancelDiscovery()
             mBluetoothSocket!!.connect()
         } catch (eConnectException: IOException) {
-            Log.e(TAG, "CouldNotConnectToSocket", eConnectException)
-            closeSocket(mBluetoothSocket!!)
+            //Log.e(TAG, "Could not connect to socket", eConnectException)
+            toast(getString(R.string.bt_bad_device))
+            mBluetoothSocket!!.close()
             return false
         }
-        toast("Bluetooth Socket Setup OK")
+        //Log.e(TAG, "Bluetooth Socket Setup OK")
         return true
-    }
-
-    private fun closeSocket(nOpenSocket: BluetoothSocket) {
-        try {
-            nOpenSocket.close()
-            Log.d(TAG, "SocketClosed")
-        } catch (ex: IOException) {
-            Log.d(TAG, "CouldNotCloseSocket")
-        }
-
     }
 
     private fun toast(msg: String) {

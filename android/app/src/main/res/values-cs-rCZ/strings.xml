@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gokasa Printer</string>
+    <string name="printer_name">Název tiskárny</string>
+    <string name="bt_device_not_found">Bluetooth tiskárna nebyla nalezena</string>
+    <string name="bt_activate">Prosím aktivujte Bluetooth</string>
+    <string name="bt_not_available">Bluetooth adaptér nebyl nalezen</string>
+    <string name="test_print">Zkušební tisk</string>
+    <string name="bt_no_paired_devices">Nejsou žádné párované zařízení</string>
+    <string name="printer_select">Vyberte tiskárnu</string>
+    <string name="bt_scan">Aktualizovat tiskárny</string>
+    <string name="bt_selected">Vybrané zařízení:</string>
+    <string name="bt_bad_device">Nepodařilo se komunikovat s vybraným zařízením</string>
+</resources>
