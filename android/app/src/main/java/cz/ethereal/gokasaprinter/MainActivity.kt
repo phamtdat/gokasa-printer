@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity() {
             //Log.e(TAG, "Found paired device ***$index ${device!!.name}***")
             //Log.e(TAG, "Saved device name is ***${getPreference("printerName")}***")
             printerNames.add(device!!.name)
-            if (device!!.name == getPreference("printerName")) {
+            if (device.name == getPreference("printerName")) {
                 defaultSelectionIndex = index
             }
         }
