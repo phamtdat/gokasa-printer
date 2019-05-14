@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.setIcon(R.mipmap.ic_launcher)
+        supportActionBar?.setIcon(R.mipmap.logo)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         setup()
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, printerNames)
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         printerSpinner.adapter = arrayAdapter
         printerSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {

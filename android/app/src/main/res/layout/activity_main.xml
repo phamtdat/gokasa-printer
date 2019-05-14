@@ -41,5 +41,15 @@
             app:layout_constraintTop_toBottomOf="@+id/testPrintButton" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/colorDarkText"/>
+    <TextView
+            android:text="2019 © Ethereals United"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:id="@+id/textView3" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/scanButton"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:gravity="center" android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.846"/>
 
 </android.support.constraint.ConstraintLayout>
