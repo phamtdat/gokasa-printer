@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Gokasa Printer</string>
+    <string name="test_print">Zkušební tisk</string>
+    <string name="refresh_paired_devices">Aktualizovat zařízení</string>
+    <string name="select_your_printer">Vyberte tiskárnu</string>
+    <string name="copyright">Copyright © 2023 Ethereals United</string>
+    <string name="you_have_n_paired_devices">Máte %1$s Bluetooth zařízení</string>
+    <string name="bluetooth_is_required_to_use_this_app">Tato aplikace používá Bluetooth</string>
+    <string name="please_turn_on_bluetooth_and_grant_the_permission_to_continue">Prosím zapněte a povolte Bluetooth</string>
+    <string name="bluetooth_permission">Bluetooth povolení</string>
+    <string name="unknown_bluetooth_device_name">\?</string>
+    <string name="ok">OK</string>
+    <string name="default_selected_device_name">…</string>
+    <string name="enable_bluetooth">Zapnout Bluetooth</string>
+    <string name="bluetooth">Bluetooth %1$s</string>
+    <string name="grant_bluetooth_permissions">Povolit Bluetooth</string>
+    <string name="bluetooth_permissions_are_granted">Bluetooth je povolen</string>
+    <string name="bluetooth_permissions_are_not_granted">Bluetooth není povolen</string>
+    <string name="test_print_string">GOKASA PRINTER\\n\\nThis is a sample message\\nThis is another line\\n\\nAnd another line\\n\\n\\n\\n.\\nGOKASA PRINTER\\n."</string>
+    <string name="connection_failed">Připojení selhalo</string>
+    <string name="enabled">je zapnut</string>
+    <string name="disabled">je vypnut</string>
+    <string name="not">ne</string>
+    <string name="please_select_a_bluetooth_device">Nejprve vyberte Bluetooth tiskárnu z nabídky</string>
+    <string name="failed_to_connect_to_bluetooth_device">Nepodařilo se připojit k zařízení, ujistěte, prosím, že je zapnuté.</string>
+    <string name="device_not_found">Zařízení není dostupné: %1$s</string>
+    <string name="printing">Probíhá tisk</string>
+</resources>

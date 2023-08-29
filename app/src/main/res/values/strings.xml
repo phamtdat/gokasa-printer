@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Gokasa Printer</string>
+    <string name="test_print">Test print</string>
+    <string name="refresh_paired_devices">Refresh devices</string>
+    <string name="select_your_printer">Select your printer</string>
+    <string name="copyright">Copyright © 2023 Ethereals United</string>
+    <string name="you_have_n_paired_devices">You have %1$s paired devices</string>
+    <string name="bluetooth_is_required_to_use_this_app">Bluetooth is required to use this app</string>
+    <string name="please_turn_on_bluetooth_and_grant_the_permission_to_continue">Please turn on Bluetooth and grant the permissions to continue</string>
+    <string name="bluetooth_permission">Bluetooth permission</string>
+    <string name="unknown_bluetooth_device_name">\?</string>
+    <string name="ok">OK</string>
+    <string name="default_selected_device_name">…</string>
+    <string name="enable_bluetooth">Enable Bluetooth</string>
+    <string name="bluetooth">Bluetooth %1$s</string>
+    <string name="grant_bluetooth_permissions">Grant Bluetooth permissions</string>
+    <string name="bluetooth_permissions_are_granted">Bluetooth permissions granted</string>
+    <string name="bluetooth_permissions_are_not_granted">Bluetooth permissions not granted</string>
+    <string name="test_print_string">GOKASA PRINTER\\n\\nThis is a sample message\\nThis is another line\\n\\nAnd another line\\n\\n\\n\\n.\\nGOKASA PRINTER\\n."</string>
+    <string name="connection_failed">Connection failed</string>
+    <string name="enabled">enabled</string>
+    <string name="disabled">disabled</string>
+    <string name="not">not</string>
+    <string name="please_select_a_bluetooth_device">Please select a Bluetooth printer device</string>
+    <string name="failed_to_connect_to_bluetooth_device">Failed to connect to Bluetooth device, please make sure the device is on.</string>
+    <string name="device_not_found">Device not found: %1$s</string>
+    <string name="printing">Printing</string>
+</resources>
