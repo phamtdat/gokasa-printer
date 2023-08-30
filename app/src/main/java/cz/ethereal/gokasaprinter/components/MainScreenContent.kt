@@ -38,9 +38,9 @@ fun MainScreenContent(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Spacer(modifier = Modifier.size(48.dp))
+            Spacer(Modifier.size(48.dp))
             BluetoothDevicesDropdownMenu(model)
-            Spacer(modifier = Modifier.size(48.dp))
+            Spacer(Modifier.size(48.dp))
             ControlButtons(model, bluetoothPermissionLauncher, enableBluetoothLauncher)
         }
         Column {

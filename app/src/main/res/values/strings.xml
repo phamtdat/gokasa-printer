@@ -25,4 +25,5 @@
     <string name="failed_to_connect_to_bluetooth_device">Failed to connect to Bluetooth device, please make sure the device is on.</string>
     <string name="device_not_found">Device not found: %1$s</string>
     <string name="printing">Printing</string>
+    <string name="go_to_app_settings">Go to App settings</string>
 </resources>

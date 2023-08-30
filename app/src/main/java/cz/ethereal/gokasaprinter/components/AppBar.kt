@@ -22,18 +22,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cz.ethereal.gokasaprinter.R
 import cz.ethereal.gokasaprinter.data.PreferenceManager
-import cz.ethereal.gokasaprinter.ui.SupportedLanguages
+import cz.ethereal.gokasaprinter.ui.AppLanguage
+import java.util.Timer
+import java.util.TimerTask
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBar() {
     val context = LocalContext.current
+    val preferenceManager = PreferenceManager(context)
+    val activeAppLanguage = preferenceManager.getSavedAppLanguage()
     var isOpenedLanguageMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
@@ -52,7 +60,7 @@ fun AppBar() {
                         contentDescription = null,
                         modifier = Modifier.size(36.dp),
                     )
-                    Spacer(modifier = Modifier.size(10.dp))
+                    Spacer(Modifier.size(10.dp))
                     Text(
                         text = stringResource(R.string.app_name),
                     )
@@ -73,21 +81,30 @@ fun AppBar() {
                         onDismissRequest = { isOpenedLanguageMenu = false },
                         modifier = Modifier.width(160.dp),
                     ) {
-                        SupportedLanguages.languages.forEach { (code, label) ->
+                        AppLanguage.supportedLanguages.forEach { (code, label) ->
+                            val disabled = code == activeAppLanguage
                             DropdownMenuItem(
                                 trailingIcon = {
                                     Image(
-                                        painter = painterResource(SupportedLanguages.flags[code]!!),
+                                        painter = painterResource(AppLanguage.countryFlags[code]!!),
                                         contentDescription = code,
                                         modifier = Modifier.size(28.dp),
+                                        colorFilter = if (disabled) ColorFilter.tint(Color.Gray, blendMode = BlendMode.Saturation) else null,
                                     )
                                 },
                                 text = { Text(label) },
                                 onClick = {
-                                    PreferenceManager(context).setSavedAppLanguage(code)
-                                    (context as Activity).recreate()
+                                    preferenceManager.setSavedAppLanguage(code)
+                                    Timer().schedule(object : TimerTask() {
+                                        override fun run() {
+                                            (context as Activity).runOnUiThread {
+                                                context.recreate()
+                                            }
+                                        }
+                                    }, 400)
                                 },
-                                modifier = Modifier.align(Alignment.End)
+                                modifier = Modifier.align(Alignment.End),
+                                enabled = !disabled,
                             )
                         }
                     }

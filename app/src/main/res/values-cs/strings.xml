@@ -25,4 +25,5 @@
     <string name="failed_to_connect_to_bluetooth_device">Nepodařilo se připojit k zařízení, ujistěte, prosím, že je zapnuté.</string>
     <string name="device_not_found">Zařízení není dostupné: %1$s</string>
     <string name="printing">Probíhá tisk</string>
+    <string name="go_to_app_settings">Přejít k nastavení</string>
 </resources>

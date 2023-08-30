@@ -11,8 +11,8 @@ android {
         applicationId = "cz.ethereal.gokasaprinter"
         minSdk = 24
         targetSdk = 33
-        versionCode = 200
-        versionName = "2.0.0"
+        versionCode = 202
+        versionName = "2.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

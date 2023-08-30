@@ -42,7 +42,7 @@ fun ControlButtons(
         Text(text = stringResource(R.string.printing))
         selectedBluetoothDevice?.name?.let { Text(text = it) }
         selectedBluetoothDevice?.address?.let { Text(text = it, fontSize = 12.sp) }
-        Spacer(modifier = Modifier.size(20.dp))
+        Spacer(Modifier.size(20.dp))
         CircularProgressIndicator()
     } else {
         Button(

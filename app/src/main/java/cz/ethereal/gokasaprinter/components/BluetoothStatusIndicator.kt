@@ -126,7 +126,7 @@ fun TextIcon(type: String) {
 fun IconWithText(type: String, text: String, fontSize: TextUnit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         TextIcon(type)
-        Spacer(modifier = Modifier.size(5.dp))
+        Spacer(Modifier.size(5.dp))
         Text(
             text = text,
             color = TextColor(type),
